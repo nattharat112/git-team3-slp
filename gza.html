@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>แผนกวิชาช่างกลโรงงาน - วิทยาลัยเทคนิคเลย</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ฟอนต์ Google (ไม่บังคับ แต่ช่วยให้สวยขึ้น) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Prompt", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #f5f7fb;
+      color: #1f2933;
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: #e5e7eb;
+    }
+
+    .logo-circle {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #38bdf8, #0f172a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #f9fafb;
+    }
+
+    .logo-text-main {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .logo-text-sub {
+      font-size: 0.75rem;
+      opacity: 0.85;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+
+    nav li a {
+      color: #e5e7eb;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      transition: background 0.2s, color 0.2s, transform 0.1s;
+    }
+
+    nav li a:hover {
+      background: rgba(248, 250, 252, 0.12);
+      color: #f9fafb;
+      transform: translateY(-1px);
+    }
+
+    /* Layout */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 2.5rem;
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: #6b7280;
+      margin-bottom: 1.5rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 1.8rem;
+      margin-top: 1.5rem;
+      margin-bottom: 2.75rem;
+    }
+
+    .hero-left {
+      padding: 1.75rem 1.5rem;
+      background: radial-gradient(circle at top left, #e0f2fe, #eff6ff);
+      border-radius: 1.5rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.08);
+      color: #0f172a;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-title {
+      font-size: clamp(1.8rem, 2.6vw, 2.3rem);
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-highlight {
+      color: #0ea5e9;
+    }
+
+    .hero-desc {
+      font-size: 0.96rem;
+      color: #4b5563;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      color: #374151;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-meta span {
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .btn-primary,
+    .btn-outline {
+      border-radius: 999px;
+      padding: 0.55rem 1.3rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.2s, color 0.2s, transform 0.1s, box-shadow 0.2s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0ea5e9, #0369a1);
+      color: #f9fafb;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 35px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-outline {
+      border-color: #0f172a;
+      color: #0f172a;
+      background: rgba(15, 23, 42, 0.02);
+    }
+
+    .btn-outline:hover {
+      background: rgba(15, 23, 42, 0.06);
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .hero-card {
+      flex: 1;
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 1.4rem;
+      padding: 1.1rem 1.2rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-card-title {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-card-text {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .hero-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.7rem;
+    }
+
+    .hero-tag {
+      font-size: 0.75rem;
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 1.2rem;
+      border: 1px solid #e5e7eb;
+      padding: 1.25rem 1.3rem;
+      box-shadow: 0 8px 25px rgba(15, 23, 42, 0.06);
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #0f172a;
+    }
+
+    .card ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+      font-size: 0.92rem;
+      color: #4b5563;
+    }
+
+    .card ul li + li {
+      margin-top: 0.35rem;
+    }
+
+    .stat-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 0.9rem;
+      font-size: 0.85rem;
+    }
+
+    .stat-pill {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border-radius: 999px;
+      padding: 0.35rem 0.8rem;
+      border: 1px solid #bfdbfe;
+    }
+
+    /* Staff grid */
+    .staff-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .staff-card {
+      background: #ffffff;
+      border-radius: 1rem;
+      border: 1px solid #e5e7eb;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .staff-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+      border-color: #0ea5e9;
+    }
+
+    .staff-photo {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      background: #e5e7eb;
+    }
+
+    .staff-body {
+      padding: 0.75rem 0.9rem 0.85rem;
+    }
+
+    .staff-name {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: #111827;
+      margin-bottom: 0.1rem;
+    }
+
+    .staff-position {
+      font-size: 0.85rem;
+      color: #6b7280;
+      margin-bottom: 0.15rem;
+    }
+
+    .staff-tag {
+      font-size: 0.78rem;
+      color: #0369a1;
+      background: #e0f2fe;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      display: inline-block;
+    }
+
+    /* Building map */
+    .building-wrapper {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 1.4rem;
+      align-items: center;
+    }
+
+    .building-image-card {
+      background: #0b1120;
+      border-radius: 1.3rem;
+      padding: 0.65rem;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      box-shadow: 0 16px 35px rgba(15, 23, 42, 0.6);
+    }
+
+    .building-image-inner {
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+    }
+
+    .building-image {
+      width: 100%;
+      max-height: 350px;
+      object-fit: cover;
+    }
+
+    .building-note {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 0.4rem;
+      text-align: right;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #e5e7eb;
+      margin-top: 1rem;
+      padding: 1.25rem;
+      font-size: 0.8rem;
+      color: #6b7280;
+      text-align: center;
+      background: #f9fafb;
+    }
+
+    footer span {
+      display: block;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero,
+      .about-grid,
+      .building-wrapper {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding-inline: 1rem;
+      }
+
+      .hero-left {
+        padding: 1.25rem 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header>
+    <div class="nav-container">
+      <div class="logo-group">
+        <div class="logo-circle">ME</div>
+        <div>
+          <div class="logo-text-main">แผนกวิชาช่างกลโรงงาน</div>
+          <div class="logo-text-sub">วิทยาลัยเทคนิคเลย</div>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#hero">หน้าแรก</a></li>
+          <li><a href="#about">เกี่ยวกับแผนก</a></li>
+          <li><a href="#staff">บุคลากร</a></li>
+          <li><a href="#building">ผังอาคาร</a></li>
+          <li><a href="#contact">ติดต่อ</a></li>
+          <li><a href="dobita.html">หลักสูตร</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ================= MAIN ================= -->
+  <main>
+
+    <!-- HERO -->
+    <section id="hero" class="hero">
+      <div class="hero-left">
+        <div class="hero-badge">
+          🔧 แผนกวิชาช่างกลโรงงาน • Loei Tech
+        </div>
+        <h1 class="hero-title">
+          ปั้นช่างเทคนิคมืออาชีพ ด้าน <span class="hero-highlight">เครื่องกลและอุตสาหกรรม</span>
+        </h1>
+        <p class="hero-desc">
+          แผนกวิชาช่างกลโรงงาน วิทยาลัยเทคนิคเลย มุ่งผลิตกำลังคนสายอาชีพที่มีทักษะทั้งภาคทฤษฎีและภาคปฏิบัติ
+          รองรับอุตสาหกรรมในพื้นที่และระดับประเทศ ผ่านการฝึกปฏิบัติงานจริง เครื่องจักรจริง
+          และความร่วมมือกับสถานประกอบการชั้นนำ
+        </p>
+
+        <div class="hero-meta">
+          <span>📍 อาคารช่างกล วิทยาลัยเทคนิคเลย</span>
+          <span>📚 หลักสูตรระดับ ปวช. – ปวส.</span>
+          <span>🤝 ร่วมมือสถานประกอบการภาคอุตสาหกรรม</span>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#staff" class="btn-primary">ดูรายชื่อครูและบุคลากร</a>
+          <a href="dobita.html" class="btn-outline">หลักสูตร</a>
+</div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-card">
+          <div>
+            <div class="hero-card-title">แนวทางการเรียนรู้</div>
+            <div class="hero-card-text">
+              เน้นปฏิบัติจริงในห้องปฏิบัติการช่างกล เครื่องกลึง เครื่องกัด เครื่องเชื่อม
+              พร้อมบูรณาการกับเทคโนโลยีอุตสาหกรรมยุคใหม่
+            </div>
+            <div class="hero-tag-row">
+              <span class="hero-tag">Lathe & Milling</span>
+              <span class="hero-tag">Welding</span>
+              <span class="hero-tag">Maintenance</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div>
+            <div class="hero-card-title">จุดเด่นของแผนก</div>
+            <div class="hero-card-text">
+              ครูผู้สอนมีประสบการณ์ตรงจากภาคอุตสาหกรรม มีเครือข่ายฝึกงานและสหกิจศึกษา
+              พร้อมสนับสนุนการแข่งขันทักษะวิชาชีพและพัฒนานวัตกรรมของผู้เรียน
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="pill">เกี่ยวกับแผนก</div>
+      <h2 class="section-title">ปรัชญา วิสัยทัศน์ และพันธกิจ</h2>
+      <p class="section-subtitle">
+        แนะนำภาพรวมของแผนกวิชาช่างกลโรงงาน วิทยาลัยเทคนิคเลย
+      </p>
+
+      <div class="about-grid">
+        <div class="card">
+          <h3 class="card-title">ปรัชญา &amp; วิสัยทัศน์</h3>
+          <ul>
+            <li>มุ่งผลิตช่างเทคนิคที่มีความรู้ คู่คุณธรรม มีทักษะตรงตามความต้องการของตลาดแรงงาน</li>
+            <li>เน้นการเรียนรู้จากการปฏิบัติจริงและการแก้ปัญหาเชิงวิศวกรรมในสถานการณ์จริง</li>
+            <li>พัฒนาผู้เรียนให้มีทักษะด้านเทคนิค ความปลอดภัยในการทำงาน และวินัยในสถานประกอบการ</li>
+          </ul>
+          <div class="stat-row">
+            <span class="stat-pill">👨‍🏭 ผู้เรียนสายช่างกล</span>
+            <span class="stat-pill">🏭 รองรับงานในโรงงานอุตสาหกรรม</span>
+            <span class="stat-pill">🔧 พัฒนาทักษะช่างชั้นสูง</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">พันธกิจหลัก</h3>
+          <ul>
+            <li>จัดการเรียนการสอนด้านช่างกลตามหลักสูตรอาชีวศึกษา ปวช. และ ปวส.</li>
+            <li>ส่งเสริมการฝึกประสบการณ์วิชาชีพและสหกิจศึกษาในสถานประกอบการจริง</li>
+            <li>พัฒนาโครงการนวัตกรรม สิ่งประดิษฐ์ และผลงานแข่งขันทักษะวิชาชีพของผู้เรียน</li>
+            <li>สร้างเครือข่ายความร่วมมือกับภาคอุตสาหกรรมในจังหวัดเลยและภูมิภาคใกล้เคียง</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- STAFF -->
+    <section id="staff">
+      <div class="pill">ทีมงาน</div>
+      <h2 class="section-title">บุคลากรแผนกวิชาช่างกลโรงงาน</h2>
+      <p class="section-subtitle">
+        ตัวอย่างรายชื่อ 19 คน ด้านล่างนี้ คุณสามารถแก้ไขชื่อ–นามสกุล–ตำแหน่ง และเปลี่ยนไฟล์รูปภาพได้ตามจริง
+      </p>
+
+      <div class="staff-grid">
+        <!-- 1 -->
+        <article class="staff-card">
+          <img src="images/staff01.jpg" alt="รูปครู 1" class="staff-photo" />
+          <div class="staff-body">
+            <div class="staff-name">นายชื่อจริง นามสกุลหนึ่ง</div>
+            <div class="staff-position">หัวหน้าแผนกวิชาช่างกลโรงงาน</div>
+            <span class="staff-tag">บริหารแผนก</span>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="staff-card">
+          <img src="images/staff02.jpg" alt="รูปครู 2" class="staff-photo" />
+          <div class="staff-body">
+            <div class="staff-name">นางชื่อจริง นามสกุลสอง</div>
+            <div class="staff-position">รองหัวหน้าแผนกวิชาช่างกลโรงงาน</div>
+            <span class="staff-tag">งานวิชาการ</span>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="staff-card">
+          <img src="images/staff03.jpg" alt="รูปครู 3" class="staff-photo" />
+          <div class="staff-body">
+            <div class="staff-name">นายชื่อจริง นามสกุลสาม</div>
+            <div class="staff-position">ครูประจำวิชาเครื่องกลึง</div>
+            <span class="staff-tag">Lathe</span>
+          </div>
+        </article>
+
+        <!-- 4 -->
+        <article class="staff-card">
+          <img src="images/staff04.jpg" alt="รูปครู 4" class="staff-photo" />
+          <div class="staff-body">
+            <div class="staff-name">นายชื่อจริง นามสกุลสี่</div>
+            <div class="staff-position">ครูประจำวิชาเครื่องกัดและไส</div>
+            <span class="staff-tag">Milling</span>
+          </div>
+        </article>
+
+        <!-- 5 -->
+        <article class="staff-card">
+          <img src="images/staff05.jpg" alt="รูปครู 5" class="staff-photo" />
+          <div class="staff-body">
+            <div class="staff-name">นายชื่อจริง นามสกุลห้า</div>
+            <div class="staff-position">ครูประจำวิชาเขียนแบบเครื่องกล</div>
+            <span class="staff-tag">Drawing</span>
+          </div>
+        </article>
+
+        <!-- 6 -->
+        <article class="staff-card">
+          <img src="images/staff06.jpg" alt="รูปครู 6" class="staff-photo" />
+          <div class="staff-body">
+            <div class="staff-name">นางสาวชื่อจริง นามสกุลหก</div>
+            <div class="staff-position">ครูประจำวิชาเทคโนโลยีการเชื่อม</div>
+            <span class="staff-tag">Welding</span>
+          </div>
+        </article>
+
+        <!-- 7 -->
+        <article class="staff-card">
+          <img src="images/staff07.jpg" alt="รูปครู 7" class="staff-photo" />
+          <div class="staff-body">
+            <div class="staff-name">นายชื่อจริง นามสกุลเจ็ด</div>
+            <div class="staff-position">ครูประจำวิชางานกลโรงงาน</div>
+            <span class="staff-tag">Workshop</span>
+          </div>
+        </article>
+
+        <!-- 8 -->
+        <article class="staff-card">
+          <img src="images/staff08.jpg" alt="รูปครู 8" class="staff-photo" />
+          <div class="staff-body">
+            <div class="staff-name">นายชื่อจริง นามสกุลแปด</div>
+            <div class="staff-position">ครูประจำวิชางานซ่อมบำรุงเครื่องจักร</div>
+            <span class="staff-tag">Maintenance</span>
+          </div>
+        </article>
+
+        <!-- 9 -->
+        <article class="staff-card">
+          <img src="images/staff09.jpg" alt="รูปครู 9" class="staff-photo" />
+          <div class="staff-body">
+            <div class="staff-name">นางชื่อจริง นามสกุลเก้า</div>
+            <div class="staff-position">ครูประจำวิชาความปลอดภัยในโรงงาน</div>
+            <span class="staff-tag">Safety</span>
+          </div>
+        </article>
+
+        <!-- 10 -->
+        <article class="staff-card">
+          <img src="images/staff10.jpg" alt="รูปครู 10" class="staff-photo" />
+          <div class="staff-body">
+            <div class="staff-name">นายชื่อจริง นามสกุลสิบ</div>
+            <div class="staff-position">ครูที่ปรึกษาระดับชั้น ปวช.</div>
+            <span class="staff-tag">ที่ปรึกษา</span>
+          </div>
+        </article>
+
+        <!-- 11 -->
+        <article class="staff-card">
+          <img src="images/staff11.jpg" alt="รูปครู 11" class="staff-photo" />
+          <div class="staff-body">
+            <div class="staff-name">นายชื่อจริง นามสกุลสิบเอ็ด</div>
+            <div class="staff-position">ครูที่ปรึกษาระดับชั้น ปวส.</div>
+            <span class="staff-tag">ที่ปรึกษา</span>
+          </div>
+        </article>
+
+        <!-- 12 -->
+        <article class="staff-card">
+          <img src="images/staff12.jpg" alt="รูปครู 12" class="staff-photo" />
+          <div class="staff-body">
+            <div class="staff-name">นางชื่อจริง นามสกุลสิบสอง</div>
+            <div class="staff-position">ครูผู้รับผิดชอบงานแนะแนว</div>
+            <span class="staff-tag">แนะแนว</span>
+          </div>
+        </article>
+
+        <!-- 13 -->
+        <article class="staff-card">
+          <img src="images/staff13.jpg" alt="รูปครู 13" class="staff-photo" />
+          <div class="staff-body">
+            <div class="staff-name">นายชื่อจริง นามสกุลสิบสาม</div>
+            <div class="staff-position">ครูผู้ประสานงานฝึกงาน/สหกิจศึกษา</div>
+            <span class="staff-tag">ฝึกงาน</span>
+          </div>
+        </article>
+
+        <!-- 14 -->
+        <article class="staff-card">
+          <img src="images/staff14.jpg" alt="รูปครู 14" class="staff-photo" />
+          <div class="staff-body">
+            <div class="staff-name">นายชื่อจริง นามสกุลสิบสี่</div>
+            <div class="staff-position">ครูประจำวิชาเครื่องลมและไฮดรอลิก</div>
+            <span class="staff-tag">Pneumatic</span>
+          </div>
+        </article>
+
+        <!-- 15 -->
+        <article class="staff-card">
+          <img src="images/staff15.jpg" alt="รูปครู 15" class="staff-photo" />
+          <div class="staff-body">
+            <div class="staff-name">นางสาวชื่อจริง นามสกุลสิบห้า</div>
+            <div class="staff-position">ครูดูแลงานวิจัยและนวัตกรรม</div>
+            <span class="staff-tag">นวัตกรรม</span>
+          </div>
+        </article>
+
+        <!-- 16 -->
+        <article class="staff-card">
+          <img src="images/staff16.jpg" alt="รูปครู 16" class="staff-photo" />
+          <div class="staff-body">
+            <div class="staff-name">นายชื่อจริง นามสกุลสิบหก</div>
+            <div class="staff-position">ช่างเทคนิคประจำห้องปฏิบัติการช่างกล</div>
+            <span class="staff-tag">ช่างเทคนิค</span>
+          </div>
+        </article>
+
+        <!-- 17 -->
+        <article class="staff-card">
+          <img src="images/staff17.jpg" alt="รูปครู 17" class="staff-photo" />
+          <div class="staff-body">
+            <div class="staff-name">นายชื่อจริง นามสกุลสิบเจ็ด</div>
+            <div class="staff-position">ช่างเทคนิคดูแลเครื่องจักรและอุปกรณ์</div>
+            <span class="staff-tag">ซ่อมบำรุง</span>
+          </div>
+        </article>
+
+        <!-- 18 -->
+        <article class="staff-card">
+          <img src="images/staff18.jpg" alt="รูปครู 18" class="staff-photo" />
+          <div class="staff-body">
+            <div class="staff-name">นางชื่อจริง นามสกุลสิบแปด</div>
+            <div class="staff-position">เจ้าหน้าที่ธุรการประจำแผนก</div>
+            <span class="staff-tag">ธุรการ</span>
+          </div>
+        </article>
+
+        <!-- 19 -->
+        <article class="staff-card">
+          <img src="images/staff19.jpg" alt="รูปครู 19" class="staff-photo" />
+          <div class="staff-body">
+            <div class="staff-name">นายชื่อจริง นามสกุลสิบเก้า</div>
+            <div class="staff-position">เจ้าหน้าที่สนับสนุนการเรียนการสอน</div>
+            <span class="staff-tag">สนับสนุนการสอน</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- BUILDING MAP -->
+    <section id="building">
+      <div class="pill">ผังอาคาร</div>
+      <h2 class="section-title">ผังอาคารแผนกวิชาช่างกลโรงงาน</h2>
+      <p class="section-subtitle">
+        ส่วนนี้ใช้สำหรับแสดงแผนผังอาคารแผนก เช่น ตำแหน่งห้องปฏิบัติการ ห้องครู ห้องเก็บเครื่องมือ ฯลฯ
+        ให้ผู้เรียนและผู้เยี่ยมชมเข้าใจโครงสร้างพื้นที่ได้ง่ายขึ้น
+      </p>
+
+      <div class="building-wrapper">
+        <div class="building-image-card">
+          <div class="building-image-inner">
+            <!-- แทนรูปผังอาคารจริงด้วยไฟล์ของคุณเอง -->
+            <img src="images/building-map.jpg" alt="ผังอาคารแผนกวิชาช่างกลโรงงาน" class="building-image" />
+          </div>
+          <div class="building-note">
+            *กรุณาอัปเดตรูปภาพนี้ให้เป็นผังอาคารจริงของแผนกช่างกล วิทยาลัยเทคนิคเลย
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">รายละเอียดผังอาคาร (ตัวอย่าง)</h3>
+          <ul>
+            <li>ชั้น 1 – ห้องปฏิบัติการช่างกลเบื้องต้น, ห้องเรียน ภาคทฤษฎี, ห้องเก็บเครื่องมือ</li>
+            <li>ชั้น 2 – ห้องปฏิบัติการเครื่องกลึง, เครื่องกัด, ห้องปฏิบัติการงานเชื่อม</li>
+            <li>โซนด้านหน้า – ห้องหัวหน้าแผนก, ห้องครูที่ปรึกษา, งานธุรการแผนก</li>
+            <li>พื้นที่ภายนอก – ลานฝึกทักษะเชื่อม, ลานทดสอบชิ้นงาน และพื้นที่เก็บชิ้นงานตัวอย่าง</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="pill">ติดต่อแผนก</div>
+      <h2 class="section-title">ข้อมูลการติดต่อ</h2>
+      <p class="section-subtitle">
+        ตัวอย่างข้อความติดต่อ สามารถปรับเปลี่ยนให้ตรงกับข้อมูลจริงของวิทยาลัยเทคนิคเลย
+      </p>
+
+      <div class="card">
+        <ul>
+          <li><strong>ที่อยู่:</strong> แผนกวิชาช่างกลโรงงาน วิทยาลัยเทคนิคเลย จังหวัดเลย</li>
+          <li><strong>โทรศัพท์:</strong> 0-0000-0000 (กรุณาแก้ไขเป็นเบอร์จริง)</li>
+          <li><strong>อีเมล:</strong> mech-dept@loei-tech.ac.th (ตัวอย่าง)</li>
+          <li><strong>เวลาให้บริการ:</strong> วันจันทร์–ศุกร์ เวลา 08.30–16.30 น.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    <span>© 2025 แผนกวิชาช่างกลโรงงาน วิทยาลัยเทคนิคเลย</span>
+    <span>จัดทำหน้าเว็บตัวอย่างด้วย HTML &amp; CSS เพื่อการประชาสัมพันธ์แผนก</span>
+  </footer>
+
+</body>
+</html>
